@@ -1,0 +1,264 @@
+$form-input-max-width-value: 48;
+$form-input-max-width: $form-input-max-width-value * 1em;
+$form-checkbox-background-color: $theme-color-primary;
+$form-checkbox-border-radius: 2px;
+$form-textarea-border-radius: 4px;
+$form-checkbox-border-color: rgba(0, 0, 0, 0.54);
+$label-color: #a9a9a9;
+
+.material-icons {
+  display: inline-block;
+  direction: ltr;
+  font-family: 'Material Icons';
+  font-feature-settings: 'liga';
+  font-size: 24px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+.form {
+  .form-field.material {
+    margin-top: 2em;
+
+    label {
+      position: absolute;
+      top: 0.5em;
+      left: 0.5em;
+      color: $label-color;
+      font-weight: 400;
+      pointer-events: none;
+      transform-origin: top left;
+      transition: transform 0.2s ease;
+    }
+
+    &.always-open {
+      label {
+        cursor: pointer;
+        pointer-events: auto;
+        transform: translate3d(-0.5em, -2em, 0) scale(0.875);
+      }
+    }
+
+    input[type='text'],
+    input[type='number'],
+    input[type='email'],
+    input[type='password'],
+    input[type='date'],
+    input[type='datetime'],
+    input[type='time'],
+    input[type='tel'],
+    textarea,
+    select {
+      max-width: $form-input-max-width;
+      border: 0;
+      border-bottom: 1px solid $label-color;
+      outline: none;
+
+      &[readonly],
+      &:focus,
+      &.has-value {
+        ~ label {
+          transform: translate3d(-0.5em, -2em, 0) scale(0.875);
+        }
+      }
+
+      &:focus {
+        ~ label {
+          color: $theme-color-primary-dark;
+        }
+      }
+
+      &[readonly],
+      &[disabled] {
+        background-color: $input-disabled-background-color;
+        border-bottom-color: $input-disabled-background-color;
+        color:  $disabled-background-color;
+
+        ~ label {
+          color: $disabled-color;
+        }
+      }
+    }
+
+    textarea {
+      border: 1px solid $label-color;
+      border-radius: $form-textarea-border-radius;
+    }
+
+    input[type='date'],
+    input[type='time'],
+    input[type='number'],
+    select {
+      ~ label {
+        transform: translate3d(-0.5em, -2em, 0) scale(0.875);
+      }
+    }
+
+    .checkbox {
+      position: relative;
+
+      label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+        cursor: pointer;
+        font-weight: 400;
+        pointer-events: all;
+
+        span {
+          margin-left: 0.5em;
+          vertical-align: text-bottom;
+        }
+
+        &::before,
+        &::after {
+          position: absolute;
+          top: 0;
+          left: 0;
+          content: '';
+          transition: opacity 0.2s;
+        }
+
+        &::before {
+          position: relative;
+          display: inline-block;
+          width: 1em;
+          height: 1em;
+          border: 2px solid $form-checkbox-border-color;
+          background-color: $theme-color-white;
+          border-radius: $form-checkbox-border-radius;
+          cursor: pointer;
+        }
+
+        &::after {
+          position: absolute;
+          top: 0.125em;
+          left: 0.375em;
+          width: 0.33em;
+          height: 0.66em;
+          border: 2px solid;
+          border-top: 0;
+          border-left: 0;
+          border-color: #fff;
+          opacity: 0.0001;
+          transform: rotate(45deg);
+        }
+      }
+
+      input[type='checkbox'] {
+        outline: none;
+        visibility: hidden;
+
+        &:checked {
+          ~ label {
+            &::before {
+              background-color: $form-checkbox-background-color;
+              border-color: transparent;
+            }
+
+            &::after {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+
+    .bar {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      width: 100%;
+      max-width: $form-input-max-width;
+      height: 3px;
+    }
+
+    .bar::before,
+    .bar::after {
+      position: absolute;
+      bottom: 1px;
+      width: 0;
+      height: 2px;
+      background-color: $theme-color-primary-light;
+      content: '';
+      transition: transform 0.2s ease;
+    }
+
+    .bar::before {
+      left: 50%;
+    }
+
+    .bar::after {
+      right: 50%;
+    }
+
+    /* active state */
+    input:focus,
+    select:focus {
+      border-bottom-color: $theme-color-primary-light;
+
+      ~ .bar::before,
+      ~ .bar::after {
+        width: 1em;
+        transform: scaleX($form-input-max-width-value);
+      }
+
+      &[readonly],
+      &[disabled] {
+        ~ .bar::before,
+        ~ .bar::after {
+          width: 0;
+          transform: none;
+        }
+      }
+    }
+
+    textarea:focus {
+      border-color: $theme-color-primary-light;
+    }
+
+    .error-message {
+      padding-left: 0.625em;
+      color: $error-color;
+      font-size: 0.8em;
+      font-weight: 500;
+    }
+
+    &.invalid {
+      input[type='text'],
+      input[type='number'],
+      input[type='email'],
+      input[type='password'],
+      input[type='date'],
+      input[type='datetime'],
+      input[type='time'],
+      input[type='tel'],
+      select {
+        border-bottom-color: $error-color;
+      }
+
+      textarea {
+        border-color: $error-color;
+      }
+
+      label {
+        color: $error-color;
+      }
+
+      .bar::before,
+      .bar::after {
+        background-color: $error-color;
+      }
+    }
+  }
+}

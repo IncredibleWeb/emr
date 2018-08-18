@@ -1,0 +1,44 @@
+.image-upload {
+  cursor: pointer;
+  text-align: center;
+  transition: opacity 0.3s ease-in-out;
+
+  &.readonly {
+    pointer-events: none;
+  }
+
+  &.loading {
+    opacity: 0.2;
+    pointer-events: none;
+  }
+
+  &.fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &::after {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    background: url('/img/icons/ic_file_upload_black_24px.svg') no-repeat 50% 50% $lighten-color;
+    background-size: 3em;
+    content: '';
+    opacity: 0.0001;
+    transition: opacity 0.15s ease-in-out;
+  }
+
+  &:hover {
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  input {
+    display: none;
+  }
+}

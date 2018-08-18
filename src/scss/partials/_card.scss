@@ -1,0 +1,67 @@
+.card {
+  position: relative;
+  padding: 1em;
+  margin: 0 auto;
+  background-color: $theme-color-white;
+  box-shadow: $box-shadow;
+
+  &.right {
+    text-align: right;
+  }
+
+  &.two-column {
+    @include container;
+
+    div {
+      @include span(1 of 2);
+
+      &:nth-child(2n) {
+        @include last;
+      }
+    }
+  }
+
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 3.5em;
+    height: 3.5em;
+
+    .close-button {
+      display: inline-block;
+
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        margin: auto;
+        color: $font-color-light;
+        content: '\00D7';
+        font-size: 2em;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.card__title {
+  font-weight: bold;
+}
+
+.card__buttons {
+  text-align: center;
+}
+
+.card__buttons--button {
+  width: 100%;
+
+  @include breakpoint {
+    max-width: 24em;
+  }
+}

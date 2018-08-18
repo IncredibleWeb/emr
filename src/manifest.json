@@ -1,0 +1,23 @@
+{
+  "name": "EMR",
+  "short_name": "EMR",
+  "icons": [{
+    "src": "/img/icons/96.png",
+    "sizes": "96x96",
+    "type": "image/png"
+  }, {
+    "src": "/img/icons/144.png",
+    "sizes": "144x144",
+    "type": "image/png"
+  }, {
+    "src": "/img/icons/512.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }],
+  "start_url": "./?source=manifest",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#2196f3",
+  "background_color": "#2196f3"
+}

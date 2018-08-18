@@ -1,0 +1,194 @@
+.form {
+  @include container;
+
+  .form-field {
+    position: relative;
+    padding: 0.5em;
+
+    label {
+      display: block;
+      margin: 0.5em;
+      font-weight: bold;
+    }
+
+    input[type='text'],
+    input[type='number'],
+    input[type='email'],
+    input[type='password'],
+    input[type='date'],
+    input[type='datetime'],
+    input[type='time'],
+    input[type='tel'],
+    textarea,
+    select {
+      display: inline-block;
+      width: 100%;
+      padding: 0.5em;
+      border: 1px solid $darken-color;
+      border-radius: $input-border-radius;
+
+      &[disabled],
+      &[readonly] {
+        background-color: $input-disabled-background-color;
+        color: $disabled-color;
+      }
+    }
+
+    textarea {
+      display: block;
+      resize: none;
+    }
+
+    select {
+      height: 2.5625em;
+      -webkit-appearance: none;
+      background-color: transparent;
+    }
+
+    &.inline {
+      input {
+        display: inline-block;
+      }
+
+      label {
+        display: inline-block;
+      }
+    }
+
+    @include breakpoint {
+      @include span(1 of 2 0);
+
+      &.single {
+        @include span(1 of 1 last);
+      }
+    }
+  }
+
+  .buttons {
+    text-align: center;
+
+    .button {
+      width: 100%;
+      margin: 1em 0;
+
+      @include breakpoint {
+        max-width: 12em;
+        margin-right: 1em;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+
+    @include breakpoint {
+      text-align: left;
+    }
+  }
+
+  .cover {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+    margin: 0 auto 1em;
+    box-shadow: $box-shadow;
+
+    .cover-container {
+      padding-top: 69.4%; // aspect ratio 1.44:1
+    }
+
+    ~ .thumb {
+      z-index: 2;
+      margin-top: -5.25em;
+    }
+
+    @include breakpoint {
+      max-width: 24em;
+    }
+  }
+
+  .thumb-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .thumb {
+    position: relative;
+    overflow: hidden;
+    width: 8em;
+    height: 8em;
+    margin: auto;
+    background-color: $darken-color-light;
+    border-radius: 50%;
+    box-shadow: $box-shadow-elevated;
+
+    img {
+      border-radius: 50%;
+    }
+
+    &.icon {
+      width: 4em;
+      height: 4em;
+    }
+  }
+
+  .thumb,
+  .cover {
+    label {
+      display: none;
+    }
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: block;
+      width: 100%;
+      min-width: 100%;
+      min-height: 100%;
+      background-color: $theme-color-white;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .map-wrapper {
+    width: 100%;
+    padding: 1em 0.5em 0.5em;
+    float: right;
+
+    &.hidden {
+      display: none;
+    }
+  }
+}
+
+.no-js {
+  input[type='text'],
+  input[type='number'],
+  input[type='email'],
+  input[type='password'],
+  input[type='date'],
+  input[type='datetime'],
+  input[type='time'],
+  input[type='tel'],
+  textarea,
+  select {
+    ~ label {
+      color: $theme-color-primary-dark;
+      transform: translate3d(-0.5em, -2em, 0) scale(0.875);
+    }
+  }
+}
+
+.error-message {
+  padding-left: 0.625em;
+  color: $error-color;
+  font-size: 0.8em;
+  font-weight: 500;
+}
+
+.profile-form__image {
+  max-width: 48em;
+  padding: 1em;
+}
