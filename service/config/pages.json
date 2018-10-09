@@ -59,7 +59,7 @@
         },
         "title": "Reports",
         "html": "",
-        "url": "/reports",
+        "url": "/reports/:reportId?",
         "isExact": true
     }
 ]

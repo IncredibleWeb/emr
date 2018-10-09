@@ -4,7 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 
 import Card from "../../components/card/card";
 import TableWrapper from "../../components/table/tableWrapper";
-import PatientsForm from "../../components/patients/patientsForm";
+import PatientsTable from "../../components/patients/patientsTable";
 import reducerInjector from "../../util/reducerInjector";
 import { REDUCER_NAME } from "./constants";
 import { fetchPatients } from "./actions";
@@ -15,22 +15,11 @@ import {
   OBJECT_QUERY_STRING_PARAM
 } from "../snackbar/constants";
 
-const URL = "/patients";
-
 class Patients extends React.PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      url: (props.url || "") + URL
-    };
-  }
-
-  // initial load (occurs once when mounting this component)
   componentDidMount() {
-    const { onLoadPatients, patients } = this.props;
+    const { onLoadPatients, patients, match } = this.props;
     if (!(patients && patients.length)) {
-      onLoadPatients();
+      onLoadPatients({ url: match.path });
     }
   }
 
@@ -39,13 +28,16 @@ class Patients extends React.PureComponent {
     const { patients, isLoading, isError, onResetOffer, history } = this.props;
     return (
       <div className="content">
-        <PatientsForm patients={patients} />
+        <h1 className="table__header">Patients</h1>
+        <div className="card">
+          <PatientsTable patients={patients} />
+        </div>
       </div>
     );
   }
 
-  static fetchData(store) {
-    return store.dispatch(fetchPatients());
+  static fetchData(store, { match }) {
+    return store.dispatch(fetchPatients({ url: match.path }));
   }
 
   static getReducer() {

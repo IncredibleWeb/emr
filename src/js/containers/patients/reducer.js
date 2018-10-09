@@ -2,6 +2,7 @@ import { fromJS } from "immutable";
 
 import {
   PATIENTS_LOADING,
+  PATIENTS_ERROR,
   SET_PATIENTS,
   RESET_PATIENTS,
   SET_PATIENT,
@@ -18,31 +19,25 @@ export const patientsReducer = (state = initialState, action) => {
   switch (action.type) {
     case PATIENTS_LOADING:
       return state.set("isLoading", action.data);
+    case PATIENTS_ERROR:
+      return state.set("isError", action.data);
     case SET_PATIENTS:
       return state.set("patients", fromJS(action.data));
     case RESET_PATIENTS:
       return state.set("patients", initialState.get("patients"));
     case SET_PATIENT:
-      return state
-        .set(
-          "patients",
+      return state.set(
+        "patients",
+        fromJS(
           state
             .get("patients")
             .toJS()
-            .find(obj => obj.id === action.data.id)
+            .map(item => {
+              item.isSelected = action.data.id === item.id;
+              return item;
+            })
         )
-        .set(
-          "patients",
-          fromJS(
-            state
-              .get("patients")
-              .toJS()
-              .map(item => {
-                item.isSelected = action.data.id === item.id;
-                return item;
-              })
-          )
-        );
+      );
     default:
       return state;
   }

@@ -11,9 +11,34 @@ export const toPatientsArray = data => {
 export const toPatient = data => {
   if (data) {
     return {
-      date: moment(data.date).format("MMMM Do YYYY"),
+      name: data.name,
+      telephone: data.telephone,
+      email: data.email,
+      comments: data.comments,
+      documentNumber: data.documentNumber,
+      lastVisitDate:
+        data.visits.length > 0 ? data.visits.sort(n => n.date)[0].date : null,
+      visits: toVisitsArray(data.visits),
+      id: data.id
+    };
+  }
+};
+
+export const toVisitsArray = data => {
+  if (data && data.length) {
+    return data.map(item => {
+      return toVisit(item);
+    });
+  }
+};
+
+export const toVisit = data => {
+  if (data) {
+    return {
+      date: data.date,
       title: data.title,
-      text: data.text,
+      description: data.description,
+      price: data.price,
       id: data.id
     };
   }

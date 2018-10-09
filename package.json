@@ -89,6 +89,7 @@
     "moment": "^2.19.2",
     "node-cache": "^4.1.1",
     "openssl": "^1.1.0",
+    "path-to-regexp": "^2.2.1",
     "prop-types": "^15.5.10",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",

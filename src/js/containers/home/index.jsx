@@ -13,8 +13,6 @@ import {
 import { getPageState } from "../page/reducer";
 import { getAppState } from "../app/reducer";
 
-const URL = "/";
-
 class Home extends React.PureComponent {
   componentDidMount() {
     const { app, onLoadHome, match } = this.props;

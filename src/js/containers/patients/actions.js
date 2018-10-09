@@ -5,16 +5,17 @@ import {
   RESET_PATIENTS,
   SET_PATIENT
 } from "./constants";
+import { getPage, fetchPage } from "../page/actions";
 import Api from "../../../../service/main";
 
-export const isError = data => {
+const isError = data => {
   return {
     type: PATIENTS_ERROR,
     data
   };
 };
 
-export const isLoading = data => {
+const isLoading = data => {
   return {
     type: PATIENTS_LOADING,
     data
@@ -34,32 +35,31 @@ const resetPatients = data => {
   };
 };
 
-export const fetchPatients = data => {
-  return dispatch => {
-    dispatch(isLoading(true));
-    dispatch(resetPatients());
-    return Api.patients
-      .get(data)
-      .then(response => {
-        dispatch(setPatients(response));
-        return response;
-      })
-      .then(response => {
-        dispatch(isLoading(false));
-        return response;
-      })
-      .catch(error => {
-        dispatch(isLoading(false));
-        dispatch(isError(true));
-        console.error(error);
-        throw error;
-      });
-  };
-};
-
 const setPatient = data => {
   return {
     type: SET_PATIENT,
     data
   };
 };
+
+const getPatients = data => dispatch => {
+  dispatch(isLoading(true));
+  dispatch(resetPatients());
+
+  return Api.patients
+    .get(data)
+    .then(response => {
+      dispatch(setPatients(response));
+      dispatch(isLoading(false));
+      return response;
+    })
+    .catch(error => {
+      dispatch(isLoading(false));
+      dispatch(isError(true));
+      console.error(error);
+      throw error;
+    });
+};
+
+export const fetchPatients = data => dispatch =>
+  Promise.all([fetchPage(data)(dispatch), getPatients(data)(dispatch)]);

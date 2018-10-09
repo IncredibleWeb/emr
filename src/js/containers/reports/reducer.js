@@ -10,7 +10,8 @@ import {
 
 const initialState = fromJS({
   reports: [],
-  isLoading: false
+  isLoading: false,
+  isError: false
 });
 
 export const reportsReducer = (state = initialState, action) => {
@@ -19,6 +20,8 @@ export const reportsReducer = (state = initialState, action) => {
       return state.set("isLoading", action.data);
     case SET_REPORTS:
       return state.set("reports", fromJS(action.data));
+    case SET_REPORTS:
+      return state.set("reports", initialState.get("reports"));
     default:
       return state;
   }
