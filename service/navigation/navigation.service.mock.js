@@ -5,66 +5,50 @@ export default class NavigationMockService extends AuthenticatedApiService {
     const nav = {
       id: 10001,
       title: "Home Page",
-      name: "en",
+      name: "Home",
       url: "/",
       children: [
         {
           id: 10001,
-          title: "Page A",
-          name: "Page A",
-          url: "/page-a/",
+          title: "Patients",
+          name: "Patients",
+          url: "/patients/",
           children: [],
           lastEdited: "2018-01-01T12:00:00",
           icon: {
-            title: "page-a.svg",
-            imageUrl: "/img/mock/page-a.svg",
-            alternateText: "page-a.svg",
+            title: "ic_patients_24px.svg",
+            imageUrl: "/img/icons/ic_patients_24px.svg",
+            alternateText: "ic_patients_24px.svg",
+            width: "",
+            height: ""
+          }
+        },
+        {
+          id: 10001,
+          title: "Reports",
+          name: "Reports",
+          url: "/reports/",
+          children: [],
+          lastEdited: "2018-01-01T12:00:00",
+          icon: {
+            title: "ic_reports_24px.svg",
+            imageUrl: "/img/icons/ic_reports_24px.svg",
+            alternateText: "ic_reports_24px.svg",
             width: "",
             height: ""
           }
         },
         {
           id: 10002,
-          title: "Page B",
-          name: "Page B",
-          url: "/page-b/",
-          children: [
-            {
-              id: 10021,
-              title: "Page BA",
-              name: "Page BA",
-              url: "/page-b/page-b",
-              children: [],
-              lastEdited: "2018-01-01T12:00:00"
-            }
-          ],
-          lastEdited: "2018-01-01T12:00:00",
-          icon: {
-            title: "page-b.svg",
-            imageUrl: "/img/mock/page-b.svg",
-            alternateText: "page-b.svg",
-            width: "",
-            height: ""
-          }
-        },
-        {
-          id: 10003,
-          title: "News",
-          name: "News",
-          url: "/news/",
-          children: []
-        },
-        {
-          id: 10003,
-          title: "Contact",
-          name: "Contact",
-          url: "/contact/",
+          title: "Settings",
+          name: "Settings",
+          url: "/settings/",
           children: [],
           lastEdited: "2018-01-01T12:00:00",
           icon: {
-            title: "contact.svg",
-            imageUrl: "/img/mock/contact.svg",
-            alternateText: "contact.svg",
+            title: "ic_settings_24px.svg",
+            imageUrl: "/img/icons/ic_settings_24px.svg",
+            alternateText: "ic_settings_24px.svg",
             width: "",
             height: ""
           }
@@ -73,7 +57,7 @@ export default class NavigationMockService extends AuthenticatedApiService {
       lastEdited: "2018-01-01T12:00:00",
       icon: {
         title: "home.svg",
-        imageUrl: "/img/mock/home.svg",
+        imageUrl: "/img/icons/ic_dashboard_24px.svg",
         alternateText: "home.svg",
         width: "",
         height: ""

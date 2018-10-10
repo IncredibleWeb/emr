@@ -7,12 +7,16 @@ import { REDUCER_NAME } from "./constants";
 import { fetchReports } from "./actions";
 import { reportsReducer, getReportsState } from "./reducer";
 import { getPageState } from "../page/reducer";
+import { fetchPage } from "../page/actions";
 
 class Reports extends React.PureComponent {
   componentDidMount() {
-    const { onLoadReports, reports, match } = this.props;
+    const { onLoadReports, reports, page, onLoadPage, match } = this.props;
     if (!(reports && reports.length)) {
       onLoadReports({ url: match.path });
+    }
+    if (page.url != match.url) {
+      onLoadPage({ url: match.url });
     }
   }
 
@@ -21,7 +25,7 @@ class Reports extends React.PureComponent {
     const { reports, page, isLoading, isError, history } = this.props;
     return (
       <div className="content">
-        <h1 className="table__header">Reports</h1>
+        <h1 className="table__header">{page.title}</h1>
         <Card html={page.html} />
       </div>
     );
@@ -45,7 +49,8 @@ const mapStateToProps = state => ({
 // specifies the behaviour, which callback prop dispatches which action
 const mapDispatchToProps = dispatch => {
   return {
-    onLoadReports: data => dispatch(fetchReports(data))
+    onLoadReports: data => dispatch(fetchReports(data)),
+    onLoadPage: data => dispatch(fetchPage(data))
   };
 };
 

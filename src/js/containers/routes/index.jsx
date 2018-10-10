@@ -35,7 +35,7 @@ export const Routes = ({ routes, ...params }) => {
                     key={route.url}
                     path={route.url}
                     render={props => <Component {...props} {...params} />}
-                    exact={route.isExact}
+                    exact={route.exact}
                   />
                 );
               }
@@ -57,7 +57,7 @@ export const PartialRoutes = ({ routes, ...params }) => {
           key={route.url}
           path={route.url}
           render={props => <Component {...props} {...params} />}
-          exact={route.isExact}
+          exact={route.exact}
         />
       );
     }

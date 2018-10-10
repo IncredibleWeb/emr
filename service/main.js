@@ -1,6 +1,9 @@
 /* This class is used to define which modules will be consumed from API
  */
-
+import Router from "./router/";
+//import RouterService from "./router/router.service";
+import Navigation from "./navigation/";
+//import NavigationService from "./navigation/navigation.service";
 import Home from "./home/";
 //import HomeService from "./home/home.service";
 import Pages from "./pages/";
@@ -15,6 +18,8 @@ import Reports from "./reports/";
 class Main {
   constructor() {
     if (!Main.instance) {
+      this.router = new Router({});
+      this.navigation = new Navigation({});
       this.home = new Home({});
       this.pages = new Pages({});
       this.authentication = new Authentication({});

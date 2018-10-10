@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html {{{ htmlAttributes }}}>
 
 <head>
-    {{{ title }}}
-	{{{ meta }}}
+    {{{ head }}}
     <style type="text/css">{{{data.inlineStyles}}}</style>
 </head>
 
-    <body>
+    <body {{{ bodyAttributes }}}>
         {{{body}}}
 
         {{> shared/async-css }}

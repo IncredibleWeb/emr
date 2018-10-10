@@ -4,6 +4,7 @@ import {
   REPORTS_LOADING,
   REPORTS_ERROR,
   SET_REPORTS,
+  RESET_REPORTS,
   SET_BALANCE,
   REDUCER_NAME
 } from "./constants";
@@ -20,7 +21,7 @@ export const reportsReducer = (state = initialState, action) => {
       return state.set("isLoading", action.data);
     case SET_REPORTS:
       return state.set("reports", fromJS(action.data));
-    case SET_REPORTS:
+    case RESET_REPORTS:
       return state.set("reports", initialState.get("reports"));
     default:
       return state;

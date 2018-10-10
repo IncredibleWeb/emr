@@ -1,5 +1,4 @@
 import { SET_NAV_ITEM_ACTIVE, SET_HEADER } from "./constants";
-import { getHeaderData } from "../../../../service/configService";
 import Api from "../../../../service/main";
 
 export const setNavItemActive = data => {
@@ -16,15 +15,13 @@ const loadHeader = data => {
   };
 };
 
-export const fetchHeader = data => {
-  return dispatch => {
-    return getHeaderData(data)
-      .then(response => {
-        dispatch(loadHeader(response));
-      })
-      .catch(error => {
-        console.error(error);
-        throw error;
-      });
-  };
-};
+export const fetchHeader = data => dispatch =>
+  Api.navigation
+    .get(data)
+    .then(response => {
+      dispatch(loadHeader(response));
+      return response;
+    })
+    .catch(error => {
+      throw error;
+    });

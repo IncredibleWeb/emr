@@ -1,5 +1,5 @@
 import { SET_PAGE_NOT_FOUND } from "./constants";
-import { getPageData } from "../../../../service/configService";
+import Api from "../../../../service/main";
 
 const setPageNotFound = data => {
   return {
@@ -10,7 +10,8 @@ const setPageNotFound = data => {
 
 export const fetchPageNotFound = data => {
   return dispatch => {
-    return getPageData(data)
+    return Api.pages
+      .get(data)
       .then(response => {
         dispatch(setPageNotFound(response));
         return response;

@@ -1,4 +1,4 @@
-import MockService from "../../custom/router/router.service.mock";
+import MockService from "./router.service.mock";
 import NodeCache from "node-cache";
 
 // Settings for the route table cache. It needs both a TTL and a check period

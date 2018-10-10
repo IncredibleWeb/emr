@@ -140,9 +140,6 @@ export function handleRender(req, res) {
                   </Provider>
                 );
 
-                const helmet = Helmet.renderStatic();
-                const { title, meta } = helmet;
-
                 // Grab the initial state from our Redux store
                 const preloadedState = store.getState();
 
@@ -156,9 +153,12 @@ export function handleRender(req, res) {
                   refreshToken: JSON.stringify(Api.getRefreshToken())
                 });
 
+                const helmet = Helmet.renderStatic();
+
                 res.render("index", {
-                  title: title.toString(),
-                  meta: meta.toString(),
+                  htmlAttributes: helmet.htmlAttributes,
+                  bodyAttributes: helmet.bodyAttributes,
+                  head: `${helmet.title} ${helmet.meta} ${helmet.link}`,
                   data
                 });
               })

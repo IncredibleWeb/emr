@@ -6,6 +6,24 @@ export default class Service extends AuthenticatedApiService {
     const pages = [
       {
         meta: {
+          title: "Home",
+          description: "",
+          keywords: "",
+          creator: "John Doe",
+          date: "01/01/2018"
+        },
+        html:
+          "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque omnis dicta soluta cum similique modi doloribus at.</p>",
+        template: "Home",
+        id: 10005,
+        name: "Home",
+        title: "Home",
+        summary: "",
+        url: "/",
+        isHidden: true
+      },
+      {
+        meta: {
           title: "Patients",
           description: "",
           keywords: "",

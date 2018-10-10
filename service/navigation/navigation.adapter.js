@@ -6,7 +6,7 @@ export const toNavigation = data => {
     response.id = data.id;
     response.name = data.name;
     response.title = data.title;
-    response.icon = data.icon ? `${BASE_URL}${data.icon.imageUrl}` : null;
+    response.icon = data.icon ? `${data.icon.imageUrl}` : null;
     response.url = data.url;
     response.isActive = data.isActive || false;
     response.children = [];

@@ -1,5 +1,5 @@
 import { SET_ROUTES } from "./constants";
-import { getRouteData } from "../../../../service/configService";
+import { getRoutes } from "../../../../server/routes";
 
 const loadRoutes = data => {
   return {
@@ -10,7 +10,7 @@ const loadRoutes = data => {
 
 export const fetchRoutes = data => {
   return dispatch => {
-    return getRouteData(data)
+    return getRoutes(data)
       .then(response => {
         dispatch(loadRoutes(response));
         return response;
