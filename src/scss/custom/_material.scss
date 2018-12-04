@@ -1,0 +1,56 @@
+$material-input-font-color: rgba(0, 0, 0, 1);
+
+.form-field--material {
+	margin-top: 0;
+
+	.form-field__input {
+	    border: 1px solid $label-color;
+	    border-radius: 3px;
+	    padding-top: 1.5em;
+	    color: $material-input-font-color;
+	    max-width: none;
+
+	    &:focus ~ label {
+			color: $label-color;
+		}
+
+		&:focus {
+			border-bottom: 1px solid $label-color;
+		}
+	}
+
+	.form-field__label {
+	    position: absolute;
+	    top: 1.75em;
+	    left: 0.5em;
+	    font-size: initial;
+	}
+
+	.form-field__input[readonly],
+	.form-field__input:focus,
+	.form-field__input--has-value {
+		~ .form-field__label {
+		  transform: translate3d(-0.1em, -0.75em, 0) scale(0.750);
+		}
+	}
+
+	select.form-field__input {
+		background-color: $theme-color-white;
+		padding: 0.75em 0.5em;
+		height: 3.85em;
+	}
+
+	.form-field__label--always-open {
+	    transform: translate3d(-0.1em, -0.75em, 0) scale(0.750);
+	}
+}
+
+.form-field--material.form-field--invalid {
+	.form-field__label {
+		color: $label-color;
+	}
+
+	.form-field__input {
+		border-bottom: 3px solid $error-color;
+	}
+}

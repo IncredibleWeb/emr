@@ -20,13 +20,10 @@ class AddToHomeScreen extends React.PureComponent {
         className={(className || "") + (!deferredPrompt ? " disabled" : "")}
         onClick={e => {
           e.preventDefault();
-
           // if the prompt has been deferred, we are able to show it
           deferredPrompt.prompt();
-
           // follow what the user has done with the prompt.
           deferredPrompt.userChoice.then(choiceResult => {
-            // dispose the prompt
             onSetDeferredPrompt(null);
           });
         }}

@@ -13,16 +13,22 @@ import bodyParser from "body-parser";
 import compression from "compression";
 import session from "express-session";
 import cookieParser from "cookie-parser";
+import fileStore from "session-file-store";
 
 // custom helpers
 import { handleRender } from "./server/server";
 import { requireHttps, requireWww } from "./server/helpers/routing.js";
+import { getRoutes } from "./server/routes";
+import { matchPath } from "react-router-dom";
+import { SESSION_USER } from "./service/constants";
 
 // configuration
 const config = {
   environment: process.env.NODE_ENV || "development",
   isHttps: process.env.isHttps === true || false
 };
+
+const FileSessionStorage = fileStore(session);
 
 const app = express();
 app.use(compression());
@@ -74,10 +80,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const sessionExpiration = 20 * 60 * 1000; // 20 minutes
 
-// Setup session middleware
+app.use(cookieParser());
+
 app.use(
   session({
-    secret: "test",
+    store: new FileSessionStorage({}),
+    secret: "auth",
     cookie: { maxAge: sessionExpiration },
     unset: "destroy",
     resave: true,
@@ -86,7 +94,66 @@ app.use(
   })
 );
 
-app.use(cookieParser());
+app.post("/setSession", function(req, res) {
+  req.session[req.body.sessionKey] = req.body.sessionData;
+  if (req.body.rememberSession) {
+    req.session.cookie.maxAge = 365 * 24 * 60 * 60 * 1000;
+  }
+  res.end();
+});
+
+let extractPath = req => {
+  // extract the path from the url
+  let urlSections = req.path.split("/");
+  urlSections = urlSections.filter(sectionString => {
+    return sectionString.length > 0;
+  });
+
+  let urlPath = null;
+  if (urlSections.length === 0) {
+    if (urlSections[0] === "") {
+    }
+    urlPath = "/";
+  } else {
+    urlPath = "/" + urlSections.join("/");
+  }
+  return urlPath;
+};
+
+app.use((req, res, next) => {
+  if (req.path === "/logout/") {
+    req.session[SESSION_USER] = null;
+    return res.redirect("/login");
+  } else {
+    return next();
+  }
+});
+
+app.use((req, res, next) => {
+  if (process.env.AUTHENTICATION_MODE === "FORM") {
+    let user = req.session.user;
+
+    getRoutes().then(routes => {
+      let route = routes.find(item => {
+        return matchPath(req.path, {
+          path: item.url,
+          exact: true
+        });
+      });
+
+      if ((route && route.isPublic) || user) {
+        // If all is ok, move on to the router
+        return next();
+      }
+
+      if (!user) {
+        return res.redirect(302, "/login");
+      }
+    });
+  } else {
+    return next();
+  }
+});
 
 // React-Redux middleware
 app.use(handleRender);

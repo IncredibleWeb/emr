@@ -1,6 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getParameterByName } from "../../util/util.js";
 import {
@@ -82,7 +80,7 @@ class Messages extends React.PureComponent {
           "snackbar dismissed " + (isSuccess === "true" ? "success" : "error")
         }
       >
-        <p className="snackbar-text">{message}</p>
+        <p className="snackbar__text">{message}</p>
       </div>
     ) : null;
   }

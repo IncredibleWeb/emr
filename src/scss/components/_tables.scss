@@ -1,0 +1,156 @@
+.table {
+  overflow: hidden;
+  width: 100%;
+  background-color: $theme-color-white;
+  border-collapse: collapse;
+  box-shadow: $box-shadow;
+  font-size: 0.875em;
+
+  &.loading {
+    opacity: 0.33;
+    pointer-events: none;
+  }
+
+  &.table__container {
+    td,
+    th {
+      @include container;
+
+      &::before {
+        display: block;
+        box-sizing: border-box;
+        content: attr(title);
+        font-weight: bold;
+
+        @include span(1 of 3);
+
+        @include breakpoint {
+          width: 0;
+          content: none;
+        }
+      }
+
+      .clickable-cell {
+        @include span(2 of 3 last);
+
+        @include breakpoint {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  thead {
+    tr {
+      display: none;
+      background-color: $theme-color-secondary;
+      color: $font-color-light;
+
+      th {
+        padding: 0.75em;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(2n) {
+        background-color: $darken-color-light;
+      }
+
+      &.selected {
+        background-color: $theme-color-secondary-light;
+      }
+    }
+  }
+
+  td,
+  th {
+    display: block;
+    width: 100%;
+    padding: 0.25em 0.75em;
+
+    &.table__container--left {
+      text-align: left;
+    }
+
+    &.table__container--right {
+      @include breakpoint {
+        text-align: right;
+      }
+    }
+
+    &.center {
+      text-align: center;
+    }
+  }
+
+  .clickable-cell {
+    display: block;
+    padding: 0.25em 0.75em;
+    color: $font-color;
+
+    @include breakpoint {
+      padding: 0.75em;
+    }
+  }
+
+  .buttons {
+    padding: 0.75em;
+
+    .icon {
+      margin-right: 1em;
+      cursor: pointer;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .dropdown {
+    border: none;
+    margin-left: 0.25em;
+    background: transparent;
+    font-size: 0.875em;
+  }
+
+  @include breakpoint() {
+    thead tr {
+      display: table-row;
+    }
+
+    td,
+    th {
+      display: table-cell;
+      width: auto;
+      padding: 0.75em 1em;
+      text-align: left;
+    }
+  }
+}
+
+.loading,
+.no-results {
+  color: lighten($font-color, 33%);
+  font-style: italic;
+  text-align: left;
+}
+
+.table__head {
+  text-transform: uppercase;
+
+  &::before {
+    content: attr(title);
+    display: block;
+    font-weight: bold;
+    padding: 0.5em;
+    box-sizing: border-box;
+    background-color: $theme-color-secondary;
+    color: $font-color-light;
+
+    @include breakpoint {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,41 @@
+.login-form {
+	@include container(48em);
+}
+
+.login-form__error-section {
+	padding: 0.5em;
+}
+
+.login-form__error-section__error-message {
+	display: inline-block;
+	width: 100%;	
+}
+
+.checkbox {
+	label {
+		margin-left: 0.5em;
+	}
+}
+
+.register-link {
+	text-align: center;
+	font-size: 0.875em;
+	text-transform: uppercase;
+	margin: 1em 0;
+
+	@include breakpoint {
+		text-align: left;
+	}
+	
+	a {
+		color: $theme-color-white;
+		padding: 1em;
+	}
+}
+
+.register-link--right {
+   display: block;
+	@include breakpoint {
+		text-align: right;
+	}
+}

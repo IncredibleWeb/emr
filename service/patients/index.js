@@ -1,9 +1,9 @@
-import Service from "./patients.service.mock";
-import { toPatientsArray } from "./patients.adapter";
+import MockService from "./service.mock";
+import { toPatientsArray } from "./adapter";
 
 export default class Patients {
-  constructor({ service }) {
-    this.service = service || new Service();
+  constructor({ service } = {}) {
+    this.service = service || new MockService();
   }
 
   get(data) {

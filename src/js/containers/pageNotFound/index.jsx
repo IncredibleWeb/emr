@@ -6,15 +6,14 @@ import reducerInjector from "../../util/reducerInjector";
 import { REDUCER_NAME } from "./constants";
 import { fetchPageNotFound } from "./actions";
 import { pageNotFoundReducer, getPageNotFoundState } from "./reducer";
-import { getAppState } from "../app/reducer";
 
-const URL = "/page-not-found";
+const URL = "/page-not-found/";
 
 class PageNotFound extends React.PureComponent {
   componentDidMount() {
     const { onLoadPageNotFound, title } = this.props;
     if (!title) {
-      onLoadPageNotFound(URL);
+      onLoadPageNotFound({ url: URL });
     }
   }
 
@@ -33,7 +32,7 @@ class PageNotFound extends React.PureComponent {
   }
 
   static fetchData(store) {
-    return store.dispatch(fetchPageNotFound({ path: URL }));
+    return store.dispatch(fetchPageNotFound({ url: URL }));
   }
 
   static getReducer() {

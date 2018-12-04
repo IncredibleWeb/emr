@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 import Awesomplete from "awesomplete";
 import ExecutionEnvironment from "exenv";
 
@@ -58,7 +58,7 @@ class AutoCompleteTextBox extends React.PureComponent {
       <div
         className={
           "form-field material autocomplete" +
-          (` ${className}` || "") +
+          `${className || ""}` +
           (messages && messages.length > 0 ? " invalid" : "")
         }
       >
@@ -104,7 +104,4 @@ class AutoCompleteTextBox extends React.PureComponent {
   }
 }
 
-AutoCompleteTextBox.propTypes = {
-  label: PropTypes.string.isRequired
-};
 export default AutoCompleteTextBox;

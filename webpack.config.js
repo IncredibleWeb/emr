@@ -17,6 +17,12 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
     .BundleAnalyzerPlugin;
 
+const AUTH_MODES = {
+    FORM: "FORM",
+    PRIVATE_KEY: "PRIVATE_KEY",
+    PUBLIC: ""
+}
+
 const node = {
     name: "node",
     devtool: isDev ? "eval" : "hidden-source-map",
@@ -42,7 +48,7 @@ const node = {
                 process.env.API_PRIVATE_KEY
             ),
             "process.env.API_TOKEN_DURATION": 20,
-            "process.env.REQUIRE_AUTHENTICATION": false,
+            "process.env.AUTHENTICATION_MODE": JSON.stringify(AUTH_MODES.PRIVATE_KEY),
             "process.env.ALLOW_PUSH_NOTIFICATON": false,
             "process.env.STORAGE_URL": JSON.stringify(""),
             "process.env.SHOW_HEADER_LOGO": false,

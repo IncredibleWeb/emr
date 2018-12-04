@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 const inputField = ({
   input,
@@ -8,9 +7,10 @@ const inputField = ({
   messages,
   className,
   readOnly,
+  autoComplete,
   meta: { touched, error }
 }) => (
-  <p className={`form-field ${className ? className : ""}`}>
+  <p className={`form-field ${className ? `form-field--${className}` : ""}`}>
     <input {...input} type={type} placeholder={label} readOnly={readOnly} />
     {messages &&
       messages.map((n, index) => {

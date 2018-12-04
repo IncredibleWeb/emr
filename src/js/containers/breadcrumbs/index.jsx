@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 
+import Card from "../../components/card/card";
+
 class Breadcrumbs extends React.PureComponent {
   render() {
     const { location } = this.props;
@@ -11,9 +13,9 @@ class Breadcrumbs extends React.PureComponent {
     }
 
     return (
-      <div className="content">
-        <div className="breadcrumbs card">{breadcrumbs}</div>
-      </div>
+      <Card className="card--breadcrumbs">
+        <div className="breadcrumbs">{breadcrumbs}</div>
+      </Card>
     );
   }
 }
@@ -41,7 +43,7 @@ const generateBreadcrumbs = path => {
       // Create the first link
       if (index === 0) {
         return (
-          <li className="link" key={index}>
+          <li className="breadcrumbs__links__link" key={index}>
             <Link to="/">Home</Link>
             {arrow}
           </li>
@@ -53,7 +55,7 @@ const generateBreadcrumbs = path => {
 
       if (index === paths.length - 1) {
         return (
-          <li className="link" key={index}>
+          <li className="breadcrumbs__links__link" key={index}>
             <span>{paths[index]}</span>
             {arrow}
           </li>
@@ -62,7 +64,7 @@ const generateBreadcrumbs = path => {
 
       // HTML structure for every link except the first
       return (
-        <li className="link" key={index}>
+        <li className="breadcrumbs__links__link" key={index}>
           <Link to={url}>{paths[index]}</Link>
           {arrow}
         </li>
@@ -71,7 +73,7 @@ const generateBreadcrumbs = path => {
     .filter(n => n);
 
   if (breadcrumbs.length) {
-    return <ul className="links">{breadcrumbs}</ul>;
+    return <ul className="breadcrumbs__links">{breadcrumbs}</ul>;
   }
 
   return "";

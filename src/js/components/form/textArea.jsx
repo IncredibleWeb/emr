@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 
 const TextArea = props => {
   const {
@@ -14,7 +14,7 @@ const TextArea = props => {
   } = props;
   return (
     <div
-      className={`form-field material ${className} ${
+      className={`form-field material ${className || ""} ${
         messages && messages.length > 0 ? " invalid" : ""
       }`}
     >
@@ -39,10 +39,6 @@ const TextArea = props => {
         })}
     </div>
   );
-};
-
-TextArea.propTypes = {
-  label: PropTypes.string.isRequired
 };
 
 export default TextArea;

@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 
 const SearchBox = props => {
   const {
@@ -9,7 +9,7 @@ const SearchBox = props => {
     className = ""
   } = props;
   return (
-    <div className={`form-field material ${className}`}>
+    <div className={`form-field material ${className || ""}`}>
       <div className="search-wrapper">
         <input
           type={type}
@@ -21,11 +21,6 @@ const SearchBox = props => {
       <span className="bar" />
     </div>
   );
-};
-
-SearchBox.propTypes = {
-  type: PropTypes.string,
-  className: PropTypes.string
 };
 
 export default SearchBox;

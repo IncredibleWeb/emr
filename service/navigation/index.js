@@ -1,8 +1,8 @@
-import MockService from "./navigation.service.mock";
-import { toNavigation, toSitemap } from "./navigation.adapter";
+import MockService from "./service.mock";
+import { toNavigation, toSitemap } from "./adapter";
 
 export default class Navigation {
-  constructor({ service }) {
+  constructor({ service } = {}) {
     this.service = service || new MockService();
   }
 

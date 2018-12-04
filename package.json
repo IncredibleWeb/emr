@@ -60,10 +60,10 @@
   },
   "scripts": {
     "deploy": "cross-env DEPLOY=true API_URL=https://localhost:8080/ API_PRIVATE_KEY=c4R3VLsjFqSDUgmR npm run build",
-    "deploy:dev": "cross-env DEPLOY=true API_URL=https://localhost:8080/ API_PRIVATE_KEY=abcd1234 npm run build",
+    "deploy:dev": "cross-env DEPLOY=true API_URL=https://localhost:8080/ API_PRIVATE_KEY=emr npm run build",
     "build": "cross-env NODE_ENV=production webpack",
     "build:dev": "cross-env NODE_ENV=development webpack",
-    "watch": "cross-env NODE_ENV=development API_URL=https://localhost:8080/ API_PRIVATE_KEY=abcd1234 webpack --watch",
+    "watch": "cross-env NODE_ENV=development API_URL=https://localhost:8080/ API_PRIVATE_KEY=emr webpack --watch",
     "start": "node app.js",
     "start_watch": "nodemon --inspect app.js --config nodemon.json"
   },
@@ -87,14 +87,11 @@
     "joi-browser": "^13.0.1",
     "jquery": "^3.2.1",
     "moment": "^2.19.2",
-    "node-cache": "^4.1.1",
     "nodemon": "^1.18.4",
     "openssl": "^1.1.0",
     "path-to-regexp": "^2.2.1",
-    "prop-types": "^15.5.10",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-google-maps": "^9.4.5",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
     "react-helmet": "^5.2.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
@@ -106,6 +103,7 @@
     "redux-form": "^7.1.2",
     "redux-immutable": "^4.0.0",
     "redux-thunk": "^2.2.0",
+    "session-file-store": "^1.2.0",
     "susy": "^2.2.14",
     "xmlhttprequest": "^1.8.0"
   }

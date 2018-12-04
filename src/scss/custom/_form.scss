@@ -1,0 +1,78 @@
+$form-field__label-color: rgba(0, 0, 0, 0.33);
+$form-field--invalid__label-color: rgba(0, 0, 0, 0.33);
+
+.form-field__input--right {
+  ~ .form-field__label {
+    right: 0.5em;
+    left: auto;
+    padding-right: 1.75em;
+  }
+}
+
+.form-field--invalid {
+  .form-field__label {
+    color: $error-color;
+  }
+}
+
+.form-field__input {
+  border: none;
+  padding: 0.75em 0.5em;
+}
+
+.form-field__input--bordered {
+  border: 1px solid $form-checkbox-border-color;
+}
+
+.form-field--currency {
+  .form-field__input--has-value,
+  .form-field__input:focus,
+  .form-field__input:active {
+    ~ .form-field__label {
+      display: none;
+    }
+  }
+}
+
+.form-field__label {
+  position: absolute;
+  top: 1.5em;
+  left: 0.5em;
+  color: $form-field__label-color;
+  margin: auto;
+  font-size: 0.875em;
+  height: 1.714em;
+  font-weight: 400;
+  pointer-events: none;
+
+  @include breakpoint {
+    padding-left: 0.75em;
+  }
+}
+
+.form-field__error-message {
+  display: block;
+  margin-top: 0.25em;
+  padding: 0.25em 0.5em;
+  color: $error-color;
+}
+
+.no-js {
+  .form-field__input {
+    ~ .form-field__label {
+      transform: translate3d(-0.1em, -0.75em, 0) scale(0.750);
+    }
+  }
+}
+
+.form__section {
+  @include container;
+}
+
+.form__section__title {
+  margin-top: 2em;
+
+  @include breakpoint {
+    padding-left: 0.5em;
+  }
+}

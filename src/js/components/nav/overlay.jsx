@@ -36,9 +36,9 @@ export default class Overlay extends React.PureComponent {
 
     return (
       <div
-        className={`modal-overlay
-          ${className}
-          ${this.state.isVisible ? " visible" : ""}`}
+        className={`modal__overlay
+          ${className || ""}
+          ${this.state.isVisible ? " modal__overlay--visible" : ""}`}
         ref={n => (this.element = n)}
       />
     );
@@ -56,7 +56,7 @@ export default class Overlay extends React.PureComponent {
 
   toggle() {
     // toggle the class 'visible'
-    let className = "visible";
+    let className = "modal__overlay--visible";
     if (this.element.classList) {
       this.element.classList.toggle(className);
     } else {

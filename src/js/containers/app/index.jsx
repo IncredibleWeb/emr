@@ -8,8 +8,9 @@ import { Provider } from "react-redux";
 import OfflineManager from "../../util/offlineManager";
 import { configureStore } from "../../util/store";
 import { getRoutesState } from "../routes/reducer";
-import { setDeferredPrompt } from "./actions";
 import { Routes } from "../routes/index";
+import { TopLevelErrorBoundary } from "../errorBoundary";
+import { setDeferredPrompt } from "./actions";
 import {
   TOKEN_STORAGE_KEY,
   REFRESH_TOKEN_STORAGE_KEY
@@ -39,10 +40,12 @@ export default class App extends React.PureComponent {
     // install service worker
     initServiceWorker();
     initOffline();
+    initNoJSObserver();
 
     window.addEventListener("beforeinstallprompt", e => {
       e.preventDefault();
       // store the event so it can be triggered later.
+      //https://developers.google.com/web/fundamentals/app-install-banners/
       this.store.dispatch(setDeferredPrompt(e));
 
       return false;
@@ -54,14 +57,36 @@ export default class App extends React.PureComponent {
     return (
       <Provider store={this.store}>
         <div id="app">
-          <BrowserRouter>
-            <Routes routes={routes} />
-          </BrowserRouter>
+          <TopLevelErrorBoundary>
+            <BrowserRouter>
+              <Routes routes={routes} />
+            </BrowserRouter>
+          </TopLevelErrorBoundary>
         </div>
       </Provider>
     );
   }
 }
+
+const initNoJSObserver = () => {
+  let targetNode = document.querySelector("html");
+
+  const config = { attributes: true, childList: false, subtree: false };
+
+  const callback = (mutationsList, observer) => {
+    for (let mutation of mutationsList) {
+      if (mutation.type == "attributes") {
+        if (targetNode.classList.contains("no-js")) {
+          targetNode.classList.remove("no-js");
+        }
+      }
+    }
+  };
+
+  let observer = new MutationObserver(callback);
+
+  observer.observe(targetNode, config);
+};
 
 const initServiceWorker = () => {
   if ("serviceWorker" in navigator) {

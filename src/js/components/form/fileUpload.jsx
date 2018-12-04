@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 
 class FileUpload extends React.PureComponent {
   constructor(props) {
@@ -31,7 +31,7 @@ class FileUpload extends React.PureComponent {
     } = this.props;
 
     return (
-      <div className={className ? `${className}` : ""}>
+      <div className={className ? `${className || ""}` : ""}>
         <div
           className={
             "file-upload" +
@@ -108,13 +108,5 @@ class FileUpload extends React.PureComponent {
     );
   }
 }
-
-FileUpload.propTypes = {
-  readOnly: PropTypes.bool,
-  multiple: PropTypes.bool,
-  label: PropTypes.string,
-  helperText: PropTypes.string,
-  className: PropTypes.string
-};
 
 export default FileUpload;

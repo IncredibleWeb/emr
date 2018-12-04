@@ -1,0 +1,64 @@
+$button-border-radius: 2px;
+
+.button {
+  display: inline-block;
+  padding: 0.75em 0.5em;
+  border: 0;
+  background-color: $theme-color-secondary;
+  border-radius: 2px;
+  box-shadow: $box-shadow;
+  color: $theme-color-white;
+  cursor: pointer;
+  font-size: 0.875em;
+  font-weight: 500;
+  text-align: center;
+  text-transform: uppercase;
+
+  &:visited {
+    color: $theme-color-white;
+  }
+
+  &:hover {
+    background-color: lighten($theme-color-secondary, 10%);
+    color: $theme-color-white;
+  }
+
+  &:active {
+    background-color: darken($theme-color-secondary, 10%);
+    color: $theme-color-white;
+  }
+
+  &[disabled],
+  &.disabled {
+    background-color: $disabled-background-color;
+    color: $disabled-color;
+  }
+}
+
+.button--danger {
+  background-color: $theme-color-danger;
+
+  &:hover {
+    background-color: lighten($theme-color-danger, 10%);
+    color: $theme-color-white;
+  }
+}
+
+.button--flat {
+  border: 0;
+  background-color: transparent;
+  box-shadow: none;
+  color: $theme-color-secondary;
+
+  &:visited {
+    color: $theme-color-secondary;
+  }
+
+  &:hover {
+    color: lighten($theme-color-secondary, 10%);
+  }
+
+  &:active {
+    color: darken($theme-color-secondary, 10%);
+  }
+}

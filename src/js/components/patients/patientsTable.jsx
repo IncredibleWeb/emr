@@ -6,7 +6,7 @@ const PatientsTable = ({ patients, balance }) => {
   if (patients && patients.length) {
     return (
       <table className="table table__container">
-        <thead>
+        <thead className="table__head" title="Patients">
           <tr>
             <th>Date</th>
             <th>Name</th>

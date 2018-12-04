@@ -1,0 +1,8 @@
+.background-gradient {
+  background: linear-gradient(to top, $theme-color-primary-dark 20%, $theme-color-primary 80%);
+  color: $font-color-light;
+}
+
+.profile-form {
+  @include container(72em);
+}

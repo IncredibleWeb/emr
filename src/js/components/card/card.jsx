@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+
+const blockClassName = "card";
 
 const Card = ({
   title,
@@ -8,27 +9,29 @@ const Card = ({
   buttons,
   closeUrl,
   className,
+  cardClassName,
   children,
   ...props
 }) => {
   return (
-    <section className={"card " + (className || "")} {...props}>
-      {title && (
-        <div className="card__title">
-          <h1>{title}</h1>
-        </div>
-      )}
+    <section
+      className={`${blockClassName} ${
+        cardClassName ? `${blockClassName}--${cardClassName}` : ""
+      } ${className || ""}`}
+      {...props}
+    >
+      {title && <h1 className={`${blockClassName}__title`}>{title}</h1>}
       {html && (
         <div className="richtext" dangerouslySetInnerHTML={{ __html: html }} />
       )}
       {buttons && (
-        <div className="card__buttons">
+        <div className={`${blockClassName}__buttons`}>
           {buttons.map((n, index) => (
             <Link
               to={n.url}
               key={index}
               href={n.url}
-              className="button"
+              className={`${blockClassName}__buttons__button`}
               title={n.title}
             >
               {n.title}
@@ -37,19 +40,13 @@ const Card = ({
         </div>
       )}
       {closeUrl && (
-        <div className="close">
-          <Link to={closeUrl} className="close-button" />
+        <div className="card-close">
+          <Link to={closeUrl} className="card-close__button" />
         </div>
       )}
       {children}
     </section>
   );
-};
-
-Card.propTypes = {
-  title: PropTypes.string,
-  html: PropTypes.string,
-  buttons: PropTypes.array
 };
 
 export default Card;

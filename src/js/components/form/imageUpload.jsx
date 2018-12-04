@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 import ExecutionEnvironment from "exenv";
 
 class ImageUpload extends React.PureComponent {
@@ -38,7 +38,7 @@ class ImageUpload extends React.PureComponent {
     } = this.props;
 
     return (
-      <div className={className ? `${className}` : ""}>
+      <div className={className ? `${className || ""}` : ""}>
         <div
           className={
             "image-upload" +
@@ -100,14 +100,5 @@ class ImageUpload extends React.PureComponent {
     );
   }
 }
-
-ImageUpload.propTypes = {
-  urlPrefix: PropTypes.string,
-  alt: PropTypes.string,
-  readOnly: PropTypes.bool,
-  multiple: PropTypes.bool,
-  label: PropTypes.string,
-  className: PropTypes.string
-};
 
 export default ImageUpload;

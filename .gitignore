@@ -11,3 +11,4 @@ src/script.js.map
 sw.js
 .idea/
 server-dist/
+sessions/
