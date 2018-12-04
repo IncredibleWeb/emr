@@ -42,7 +42,7 @@ const setPatient = data => {
   };
 };
 
-const getPatients = data => dispatch => {
+export const getPatients = data => dispatch => {
   dispatch(isLoading(true));
   dispatch(resetPatients());
 

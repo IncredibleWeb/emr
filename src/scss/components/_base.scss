@@ -1,0 +1,60 @@
+@import '~susy/sass/susy';
+
+$base-font-family: unquote('sans-serif');
+$background-color: #f6f6f6;
+$font-family: 'Roboto', sans-serif;
+$theme-color-primary: #2196f3;
+$theme-color-primary-dark: #1769aa;
+$theme-color-primary-light: #4dabf5;
+$theme-color-secondary: #f50057;
+$theme-color-secondary-dark: #ab003c;
+$theme-color-secondary-light: #f73378;
+$theme-color-white: #fff;
+$theme-color-black: #000;
+$error-color: #f44336;
+$theme-color-danger: #da0000;
+$offline-background-color: #333;
+$darken-color: rgba(0, 0, 0, 0.33);
+$darken-color-light: rgba(0, 0, 0, 0.1);
+$lighten-color: rgba(255, 255, 255, 0.66);
+$lighten-color-light: rgba(255, 255, 255, 0.33);
+$input-disabled-background-color: #eee;
+$disabled-background-color: #9a9a9a;
+$disabled-color: #ccc;
+$line-height: 1.5em;
+$font-size: 16px;
+$font-color: rgba(0, 0, 0, 0.7);
+$font-color-light: #fff;
+$font-weight: 300;
+$box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+$box-shadow-elevated: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+$box-shadow-dialog: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+$box-shadow-bottom: 0 2px 5px rgba(0, 0, 0, 0.26);
+$box-shadow-top: 0 -2px 5px rgba(0, 0, 0, 0.26);
+$border-radius: 0;
+$input-border-radius: 0;
+$border-darken: 1px solid rgba(0, 0, 0, 0.33);
+$border-lighten: 1px solid rgba(0, 0, 0, 0.05);
+$overlay-background-color: rgba(0, 0, 0, 0.5);
+$max-width: 72em;
+$useDarkTheme: true;
+
+@mixin breakpoint($point: desktop) {
+  @if $point == desktop-xxl {
+    @media only screen and (min-width: 90em) {
+      @content;
+    }
+  }
+
+  @else if $point == desktop-l {
+    @media only screen and (min-width: 78em) {
+      @content;
+    }
+  }
+
+  @else {
+    @media only screen and (min-width: 48em) {
+      @content;
+    }
+  }
+}

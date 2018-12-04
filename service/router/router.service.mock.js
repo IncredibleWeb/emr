@@ -14,12 +14,12 @@ export default class RouterMockService extends AuthenticatedApiService {
           value: "patients"
         },
         {
-          key: "/settings/",
-          value: "settings"
-        },
-        {
           key: "/reports/",
           value: "reports"
+        },
+        {
+          key: "/settings/",
+          value: "settings"
         }
       ]
     });

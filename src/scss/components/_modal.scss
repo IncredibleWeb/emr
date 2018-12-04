@@ -1,0 +1,51 @@
+.modal {
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 9;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  max-width: 48em;
+  backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  box-shadow: $box-shadow-dialog;
+
+  @include breakpoint {
+    height: auto;
+    max-height: 90%;
+  }
+
+  .card {
+    height: 100%;
+  }
+}
+
+.modal--wide {
+  max-width: 72em;
+
+  @include breakpoint {
+    width: 90%;
+  }
+}
+
+.modal--closed {
+  opacity: 0.0001;
+}
+
+.modal--fullscreen {
+  max-width: 100vw;
+  height: 100%;
+  max-height: none;
+
+  .card {
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+}
+
+.modal__overlay {
+  display: none;
+}

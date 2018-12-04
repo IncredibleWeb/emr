@@ -16,10 +16,7 @@ const initialState = fromJS({
     icon: "",
     isActive: false,
     children: []
-  },
-  balance: 0,
-  notifications: fromJS([]),
-  profileImage: null
+  }
 });
 
 export function headerReducer(state = initialState, action) {
@@ -45,12 +42,6 @@ export function headerReducer(state = initialState, action) {
         );
     case SET_HEADER:
       return state.set("nav", action.data);
-    case SET_BALANCE:
-      return state.set("balance", action.data.balance);
-    case SET_NOTIFICATIONS:
-      return state.set("notifications", fromJS(action.data));
-    case SET_PROFILE:
-      return state.set("profileImage", action.data);
     default:
       return state;
   }

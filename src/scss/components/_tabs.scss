@@ -1,0 +1,33 @@
+$tabs-background-color: $theme-color-primary-light;
+$tab-color: $font-color;
+$tab-border-color-selected: $theme-color-secondary;
+
+.tabs {
+  background-color: $tabs-background-color;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.tabs__link {
+  display: inline-block;
+  padding: 1em;
+  border-bottom: 2px solid transparent;
+  margin-right: 1em;
+  color: $tab-color;
+  font-size: 0.875em;
+  text-transform: uppercase;
+
+  &:visited {
+    color: $tab-color;
+  }
+
+  &.selected {
+    border-bottom: 2px solid $tab-border-color-selected;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}

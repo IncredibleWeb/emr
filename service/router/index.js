@@ -11,7 +11,7 @@ const routeTableCache = new NodeCache({
 });
 
 export default class Router {
-  constructor({ service }) {
+  constructor({ service } = {}) {
     this.service = service || new MockService();
   }
 

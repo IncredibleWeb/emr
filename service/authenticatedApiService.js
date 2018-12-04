@@ -1,6 +1,12 @@
 import Api from "./main";
 import ApiService from "./apiService";
-import { TOKEN_STORAGE_KEY, REFRESH_TOKEN_STORAGE_KEY } from "./constants";
+import {
+  TOKEN_STORAGE_KEY,
+  REFRESH_TOKEN_STORAGE_KEY,
+  SESSION_USER
+} from "./constants";
+
+const authenticationMode = process.env.AUTHENTICATION_MODE;
 
 export default class AuthenticatedApiService extends ApiService {
   constructor() {
@@ -19,21 +25,12 @@ export default class AuthenticatedApiService extends ApiService {
 
         return config;
       } else {
-        // request a new token from the API
-        return Api.authentication
-          .requestToken({
-            ttl: process.env.API_TOKEN_DURATION,
-            privateKey: process.env.API_PRIVATE_KEY
-          })
-          .then(response => {
-            // add the authorization attribute for the current request
-            config.headers["Authorization"] = `Bearer ${response.token}`;
+        // if any authentication mode is selected
+        if (authenticationMode) {
+          config.headers["Authorization"] = `Bearer ${Api.getToken()}`;
 
-            Api.setToken(response.token);
-            Api.setRefreshToken(response.refreshToken);
-
-            return config;
-          });
+          return config;
+        }
       }
     });
 
@@ -58,6 +55,16 @@ export default class AuthenticatedApiService extends ApiService {
                 config.__isRetryRequest = true;
                 config.headers["Authorization"] = `Bearer ${response.token}`;
 
+                // sync with node express-session
+                let sessionData = {};
+                sessionData[TOKEN_STORAGE_KEY] = response.token;
+                sessionData[REFRESH_TOKEN_STORAGE_KEY] = response.refreshToken;
+
+                Api.session.post({
+                  sessionKey: SESSION_USER,
+                  sessionData
+                });
+
                 // update refresh token in local storage
                 sessionStorage.setItem(TOKEN_STORAGE_KEY, response.token);
                 sessionStorage.setItem(
@@ -72,11 +79,46 @@ export default class AuthenticatedApiService extends ApiService {
             console.error(
               "Authentication Error: Please refresh to generate a new token."
             );
+
+            // clear out user session in node express-session
+            Api.session.post({
+              sessionKey: SESSION_USER,
+              sessionData: null
+            });
+
+            // clear out session storage
+            sessionStorage.setItem(TOKEN_STORAGE_KEY, "");
+            sessionStorage.setItem(REFRESH_TOKEN_STORAGE_KEY, "");
+
+            window.location.replace("/login");
           }
         } else {
           console.error("Authentication Error: Server failed to authenticate.");
+          // clear out user session in node express-session
+          Api.session.post({
+            sessionKey: SESSION_USER,
+            sessionData: null
+          });
+
+          Api.setToken("");
         }
       } else {
+        // clear out user session in node express-session
+        Api.session.post({
+          sessionKey: SESSION_USER,
+          sessionData: null
+        });
+
+        Api.setToken("");
+
+        if (hasStorage) {
+          // clear out session storage
+          sessionStorage.setItem(TOKEN_STORAGE_KEY, "");
+          sessionStorage.setItem(REFRESH_TOKEN_STORAGE_KEY, "");
+
+          window.location.replace("/login");
+        }
+
         return Promise.reject(error);
       }
     });

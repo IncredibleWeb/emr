@@ -4,7 +4,8 @@ import {
   SET_DEFERRED_PROMPT,
   SET_META,
   SET_URL,
-  SET_TITLE
+  SET_TITLE,
+  SET_BOUNDARY_ERROR
 } from "./constants";
 
 export const isLoading = data => ({
@@ -14,6 +15,11 @@ export const isLoading = data => ({
 
 export const isError = data => ({
   type: APP_ERROR
+});
+
+export const setBoundaryError = data => ({
+  type: SET_BOUNDARY_ERROR,
+  data
 });
 
 export const setDeferredPrompt = data => ({

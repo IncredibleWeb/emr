@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 class Footer extends React.PureComponent {
   render() {
     return (
-      <footer>
+      <footer className="footer">
         <div className="footer-wrapper">Another PWA by Incredible Web</div>
       </footer>
     );

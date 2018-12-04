@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 const TableWrapper = ({
   data,
@@ -10,7 +9,11 @@ const TableWrapper = ({
   children
 }) => {
   return (
-    <div className={`table-wrapper ${className} ${isLoading ? "loading" : ""}`}>
+    <div
+      className={`table-wrapper ${className || ""} ${
+        isLoading ? "loading" : ""
+      }`}
+    >
       {data && data.length > 0 ? (
         children
       ) : (
@@ -20,14 +23,6 @@ const TableWrapper = ({
       )}
     </div>
   );
-};
-
-TableWrapper.propTypes = {
-  data: PropTypes.array,
-  isLoading: PropTypes.bool.isRequired,
-  isError: PropTypes.bool.isRequired,
-  className: PropTypes.string,
-  noResults: PropTypes.string
 };
 
 export default TableWrapper;

@@ -1,9 +1,16 @@
-import { SET_ROUTES } from "./constants";
+import { SET_ROUTES, SET_PREVIOUS_LOCATION } from "./constants";
 import { getRoutes } from "../../../../server/routes";
 
 const loadRoutes = data => {
   return {
     type: SET_ROUTES,
+    data
+  };
+};
+
+export const setPreviousLocation = data => {
+  return {
+    type: SET_PREVIOUS_LOCATION,
     data
   };
 };

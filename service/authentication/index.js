@@ -6,10 +6,9 @@ import {
 } from "./authentication.adapter";
 
 export default class Authentication {
-  constructor({ service }) {
+  constructor({ service } = {}) {
     this.service = service || new MockAuthenticationService();
     this.token = null;
-    this.refreshToken = null;
   }
 
   requestToken(data) {
@@ -28,15 +27,7 @@ export default class Authentication {
     this.token = value;
   }
 
-  setRefreshToken(value) {
-    this.refreshToken = value;
-  }
-
   getToken() {
     return this.token;
-  }
-
-  getRefreshToken() {
-    return this.refreshToken;
   }
 }

@@ -14,7 +14,7 @@ class Header extends React.PureComponent {
 
     this.state = {
       logo: {
-        src: "/img/logo.png",
+        src: "/img/Logo.png",
         alt: process.env.NAME,
         title: process.env.NAME
       }
@@ -32,21 +32,20 @@ class Header extends React.PureComponent {
 
   render() {
     const { nav, app, onSetNavItemActive } = this.props;
-
     return (
       <div>
-        <header>
+        <header className="header">
           {process.env.SHOW_HEADER_LOGO && (
-            <div className="header-logo">
+            <div className="header__logo">
               <img
                 src={this.state.logo.src}
                 title={this.state.logo.title}
                 alt={this.state.logo.alt}
-                className="header-logo__img"
+                className="header__logo__img"
               />
             </div>
           )}
-          <div className="header-wrapper">{app.title}</div>
+          <div className="header__title">{app.title}</div>
         </header>
         <Nav
           nav={nav}

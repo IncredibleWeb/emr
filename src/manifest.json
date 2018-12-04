@@ -1,6 +1,8 @@
 {
   "name": "EMR",
   "short_name": "EMR",
+  "description": "EMR",
+  "author": "Incredible Web",
   "icons": [{
     "src": "/img/icons/96.png",
     "sizes": "96x96",

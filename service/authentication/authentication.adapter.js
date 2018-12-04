@@ -1,8 +1,10 @@
 export const toTokenRequestJson = data => {
   if (data) {
     return {
-      tokenDurationMinutes: data.ttl,
-      dashboardToken: data.privateKey
+      ttl: data.ttl,
+      privateKey: data.privateKey,
+      userName: data.userName,
+      password: data.password
     };
   }
   return null;
@@ -11,7 +13,7 @@ export const toTokenRequestJson = data => {
 export const toRefreshTokenRequestJson = data => {
   if (data) {
     return {
-      tokenDurationMinutes: data.ttl,
+      ttl: data.ttl,
       refreshToken: data.refreshToken
     };
   }
@@ -21,6 +23,7 @@ export const toRefreshTokenRequestJson = data => {
 export const toAuthentication = data => {
   if (data) {
     return {
+      id: data.id,
       token: data.token,
       expiryDate: data.expiryDate,
       refreshToken: data.refreshToken,

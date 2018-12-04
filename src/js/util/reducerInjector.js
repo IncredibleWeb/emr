@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 import hoistNonReactStatics from "hoist-non-react-statics";
 
 import { injectReducer } from "./store";
@@ -14,10 +14,6 @@ export default (key, reducer) => WrappedComponent => {
       return <WrappedComponent {...this.props} />;
     }
   }
-
-  ReducerInjector.contextTypes = {
-    store: PropTypes.object.isRequired
-  };
 
   return hoistNonReactStatics(ReducerInjector, WrappedComponent);
 };

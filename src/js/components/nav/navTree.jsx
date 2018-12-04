@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 import NavTreeItem from "./navTreeItem";
 
 const NavTree = ({ nav, onLinkClick }) => {
@@ -36,17 +36,6 @@ const NavTree = ({ nav, onLinkClick }) => {
       {children}
     </ul>
   );
-};
-
-NavTree.propTypes = {
-  nav: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-    icon: PropTypes.string.isRequired,
-    isActive: PropTypes.bool.isRequired,
-    isExternal: PropTypes.bool,
-    children: PropTypes.array.isRequired
-  }).isRequired
 };
 
 export default NavTree;

@@ -120,3 +120,75 @@ export function removeQueryParameter(uri, key) {
   uri = pars.length > 0 ? pars.join("&") : "";
   return uri;
 }
+
+export function setCookie(cname, cvalue, exdays) {
+  if (typeof window !== "undefined") {
+    let d = new Date();
+    d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+}
+
+export function getCookie(cname) {
+  if (typeof window !== "undefined") {
+    let name = cname + "=";
+    let ca = document.cookie.split(";");
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == " ") {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+}
+
+export function encrypt(msg, pass) {
+  const keySize = 256;
+  const iterations = 100;
+
+  let salt = CryptoJS.lib.WordArray.random(128 / 8);
+
+  let key = CryptoJS.PBKDF2(pass, salt, {
+    keySize: keySize / 32,
+    iterations: iterations
+  });
+
+  let iv = CryptoJS.lib.WordArray.random(128 / 8);
+
+  let encrypted = CryptoJS.AES.encrypt(msg, key, {
+    iv: iv,
+    padding: CryptoJS.pad.Pkcs7,
+    mode: CryptoJS.mode.CBC
+  });
+
+  // salt, iv will be hex 32 in length
+  // append them to the ciphertext for use  in decryption
+  let transitmessage = salt.toString() + iv.toString() + encrypted.toString();
+  return transitmessage;
+}
+
+export function decrypt(transitmessage, pass) {
+  const keySize = 256;
+  const iterations = 100;
+
+  let salt = CryptoJS.enc.Hex.parse(transitmessage.substr(0, 32));
+  let iv = CryptoJS.enc.Hex.parse(transitmessage.substr(32, 32));
+  let encrypted = transitmessage.substring(64);
+
+  let key = CryptoJS.PBKDF2(pass, salt, {
+    keySize: keySize / 32,
+    iterations: iterations
+  });
+
+  let decrypted = CryptoJS.AES.decrypt(encrypted, key, {
+    iv: iv,
+    padding: CryptoJS.pad.Pkcs7,
+    mode: CryptoJS.mode.CBC
+  });
+  return decrypted.toString(CryptoJS.enc.Utf8);
+}

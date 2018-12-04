@@ -1,9 +1,8 @@
-@import 'partials/base';
-@import 'partials/overlay';
-@import 'partials/layout';
-@import 'partials/snackbar';
-@import 'partials/breadcrumbs';
-@import 'partials/button';
-@import 'partials/form';
-@import 'partials/tables';
-@import 'partials/settings';
+@import 'components/base';
+@import 'components/layout';
+@import 'components/footer';
+@import 'components/snackbar';
+@import 'components/tables';
+@import 'components/settings';
+@import 'custom/toggle';
+@import 'components/error';

@@ -7,7 +7,7 @@ const loadHome = data => ({
   data
 });
 
-const getHome = data => dispatch =>
+export const getHome = data => dispatch =>
   Api.home
     .get(data)
     .then(response => {

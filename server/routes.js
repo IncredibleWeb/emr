@@ -29,7 +29,7 @@ export const getRoutes = () => {
       } else if (item.value.toLowerCase() === "reports") {
         array.push({
           url: item.key,
-          name: "Reports",
+          name: "Page",
           exact: true
         });
       } else if (item.value.toLowerCase() === "settings") {

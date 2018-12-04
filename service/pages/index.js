@@ -2,7 +2,7 @@ import MockService from "./pages.service.mock";
 import { toPage } from "./pages.adapter";
 
 export default class Pages {
-  constructor({ service }) {
+  constructor({ service } = {}) {
     this.service = service || new MockService();
   }
 

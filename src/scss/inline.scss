@@ -1,7 +1,21 @@
-@import 'partials/base';
 @import 'vendor/normalize/import-now';
-@import 'partials/critical';
-@import 'partials/material';
-@import 'partials/nav';
-@import 'partials/card';
-@import 'partials/toggle';
+@import 'components/base';
+@import 'components/critical';
+@import 'components/header';
+@import 'components/material';
+@import 'components/nav';
+@import 'components/card';
+@import 'components/toggle';
+@import 'components/breadcrumbs';
+@import 'components/modal';
+@import 'components/overlay';
+@import 'components/button';
+@import 'components/form';
+@import 'components/radio';
+@import 'components/confirm';
+@import 'components/gallery';
+@import 'components/imageUpload';
+
+@import 'custom/profile';
+@import 'custom/form';
+@import 'custom/material';

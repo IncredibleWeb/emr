@@ -1,8 +1,8 @@
-import MockService from "./home.service.mock";
-import { toHome } from "./home.adapter";
+import MockService from "./service.mock";
+import { toHome } from "./adapter";
 
-export default class Status {
-  constructor({ service }) {
+export default class Home {
+  constructor({ service } = {}) {
     // initialize the services and adapters
     this.service = service || new MockService();
   }
