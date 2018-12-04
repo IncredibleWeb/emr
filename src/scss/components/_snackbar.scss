@@ -1,0 +1,30 @@
+$snackbar-background-color: rgba(0, 0, 0, 0.8);
+
+.snackbar {
+  position: fixed;
+  z-index: 99;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  padding: 0.285em 1em;
+  background-color: $snackbar-background-color;
+  color: $theme-color-white;
+  font-size: 0.875em;
+  transform: translate(0, 0);
+  transition: transform 0.2s ease-in-out;
+
+  @include breakpoint {
+    right: auto;
+    bottom: 1em;
+    left: 1em;
+  }
+
+  &.dismissed {
+    transform: translate(0, calc(100% + 1em));
+  }
+}
+
+.message__text {
+  margin: 0;
+}

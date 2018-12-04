@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 import { Link } from "react-router-dom";
 
 const ClickableCell = ({
@@ -16,7 +16,7 @@ const ClickableCell = ({
     <Link
       to={url}
       title={label}
-      className={"clickable-cell " + (className || "")}
+      className={"table__cell--clickable " + (className || "")}
       onClick={e => {
         e.stopPropagation();
         if (allowEdit && onEdit) {
@@ -29,13 +29,6 @@ const ClickableCell = ({
       {children}
     </Link>
   );
-};
-
-ClickableCell.propTypes = {
-  allowEdit: PropTypes.bool,
-  url: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
-  label: PropTypes.string
 };
 
 export default ClickableCell;

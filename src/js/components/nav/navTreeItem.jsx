@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 
 const NavTreeItem = ({ url, name, icon, isActive, onClick, isExternal }) => {
   const className = isActive ? "selected" : "";
@@ -14,26 +13,18 @@ const NavTreeItem = ({ url, name, icon, isActive, onClick, isExternal }) => {
           className={className}
           onClick={onClick}
         >
-          <i className="icon">{icon && <img src={icon} alt={name} />}</i>
+          <i className="nav__icon">{icon && <img src={icon} alt={name} />}</i>
           {name}
         </a>
       )}
       {!isExternal && (
         <Link to={url} title={name} className={className} onClick={onClick}>
-          <i className="icon">{icon && <img src={icon} alt={name} />}</i>
+          <i className="nav__icon">{icon && <img src={icon} alt={name} />}</i>
           {name}
         </Link>
       )}
     </div>
   );
-};
-
-NavTreeItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
-  icon: PropTypes.string,
-  isActive: PropTypes.bool.isRequired,
-  isExternal: PropTypes.bool
 };
 
 export default NavTreeItem;

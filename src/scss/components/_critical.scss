@@ -1,0 +1,86 @@
+html {
+  position: relative;
+  background-color: $background-color;
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+}
+
+body,
+select,
+input,
+textarea {
+  color: $font-color;
+  font-family: $font-family;
+  font-size: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: $font-weight;
+  line-height: $line-height;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: $theme-color-secondary;
+  text-decoration: none;
+
+  &:visited {
+    color: $theme-color-secondary;
+  }
+
+  &:hover,
+  &:active {
+    color: lighten($theme-color-secondary, 10%);
+  }
+
+  &.disabled {
+    color: $disabled-color;
+    pointer-events: none;
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+h1, h2, h3 {
+  font-weight: 400;
+}
+
+h1 {
+  margin-top: 0.333em;
+  line-height: 1.125;
+}
+
+h3 {
+  font-weight: 700;
+}
+
+.content {
+  position: relative;
+  padding: 1em 1em 0;
+}
+
+#root {
+  min-height: calc(100vh - 7em);
+}
+
+.main {
+  margin-top: 3.5em;
+  margin-bottom: 0.5em;
+
+  @include breakpoint {
+    margin-left: 16em;
+  }
+}
+
+.offline {
+  filter: grayscale(1);
+}
+
+.hidden {
+  visibility: hidden;
+}

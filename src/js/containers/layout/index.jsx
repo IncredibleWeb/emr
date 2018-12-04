@@ -1,10 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 
 import Header from "../header/index";
-import Footer from "../footer/index";
 import Snackbar from "../snackbar/index";
+import ErrorMessage from "../errorBoundary/errorMessage";
 import Breadcrumbs from "../breadcrumbs/index";
 import Meta from "../../components/meta/meta";
 import FadeTransition from "../../components/transitions/fade";
@@ -21,6 +20,7 @@ class Layout extends React.PureComponent {
         <FadeTransition in={!app.isLoading}>
           <main id="main" className="main">
             <Snackbar />
+            <ErrorMessage />
             {showBreadcrumbs && <Breadcrumbs />}
             {children}
           </main>

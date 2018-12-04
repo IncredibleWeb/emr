@@ -1,0 +1,33 @@
+.form-field-toggle {
+  @include container;
+}
+
+.form-field-toggle__holder {
+  position: relative;
+}
+
+.form-field-toggle__checkbox {
+  @include span(1 of 3 last);
+  padding-top: 0.4em;
+
+  @include breakpoint() {
+    @include span(1 of 5);
+  }
+}
+
+.form-field-toggle__label {
+  @include span(2 of 3);
+
+  @include breakpoint {
+    @include span(3 of 5);
+  }
+}
+
+.form-field-toggle__title {
+  display: none;
+
+  @include breakpoint {
+    @include span(1 of 5 last);
+    display: block;
+  }
+}

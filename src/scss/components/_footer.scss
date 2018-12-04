@@ -1,0 +1,19 @@
+.footer {
+  position: fixed;
+  z-index: 6;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 3.5em;
+  backface-visibility: hidden;
+  background-color: $theme-color-primary;
+  box-shadow: $box-shadow-bottom;
+  color: $theme-color-white;
+  line-height: 3.5em;
+  text-align: center;
+  transform: translateZ(0);
+}
+
+.footer-wrapper {
+  font-size: 0.8em;
+}

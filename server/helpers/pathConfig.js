@@ -20,10 +20,11 @@ export const defaultPathConfig = {
     `/../../${process.env.outputFolder}`
   ),
   remoteStyles: [
+    "https://fonts.googleapis.com/css?family=Noto+Sans:400,700",
     "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700",
     "https://fonts.googleapis.com/icon?family=Material+Icons",
-    "/style.css",
-    "/vendor.css"
+    "/vendor.css",
+    "/style.css"
   ],
   vendorScripts: ["/common.js"],
   remoteScripts: ["/main.js"]

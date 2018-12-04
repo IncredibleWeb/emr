@@ -1,6 +1,6 @@
 import Modernizr from "modernizr";
 import React from "react";
-import PropTypes from "prop-types";
+
 import { withRouter, Link } from "react-router-dom";
 
 import {
@@ -52,8 +52,8 @@ class Nav extends React.PureComponent {
 
     return (
       <div>
-        <nav className="nav-menu checkbox">
-          <div className="hamburger">
+        <nav className="nav checkbox">
+          <div className="nav__hamburger">
             <input
               type="checkbox"
               id="hamburger"
@@ -61,18 +61,18 @@ class Nav extends React.PureComponent {
             />
             <label htmlFor="hamburger">Toggle Menu</label>
             <div
-              className="side-nav always-open-on-desktop"
+              className="nav__side-nav nav__side-nav--always-open-on-dekstop"
               ref={n => (this.sideBarEl = n)}
             >
-              <div className="nav-header">
+              <div className="nav__side-nav__header">
                 {!process.env.SHOW_HEADER_LOGO && (
-                  <div className="logo">
+                  <div className="nav__side-nav__header__logo">
                     <img src={logo.src} alt={logo.alt} title={logo.title} />
                   </div>
                 )}
               </div>
-              <div className="nav-body">
-                <div className="section">
+              <div className="nav__side-nav__body">
+                <div className="nav__side-nav__body__section">
                   <NavTree
                     nav={nav}
                     onLinkClick={e => {
@@ -84,7 +84,7 @@ class Nav extends React.PureComponent {
             </div>
           </div>
         </nav>
-        <Overlay ref={n => (this.overlay = n)} />
+        <Overlay className="nav-overlay" ref={n => (this.overlay = n)} />
       </div>
     );
   }
@@ -281,10 +281,5 @@ class Nav extends React.PureComponent {
     }
   }
 }
-
-// type-checking
-Nav.propTypes = {
-  nav: PropTypes.object.isRequired
-};
 
 export default withRouter(Nav);

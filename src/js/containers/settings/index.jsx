@@ -4,28 +4,21 @@ import { connect } from "react-redux";
 import AddToHomeScreen from "../a2hs/a2hs";
 import PushNotificationToggle from "../../components/push/push";
 import reducerInjector from "../../util/reducerInjector";
+import withPage from "../page/withPage";
 import { REDUCER_NAME } from "./constants";
-import { fetchSettings, setPushEnabled } from "./actions";
+import { fetchSettings, setPushEnabled, getSettings } from "./actions";
 import { settingsReducer, getSettingsState } from "./reducer";
-import { getAppState } from "../app/reducer";
+import withAuth from "../login/withAuth";
 
 class Settings extends React.PureComponent {
-  componentDidMount() {
-    const { onLoadSettings, match, app } = this.props;
-
-    if (app.url !== match.path) {
-      onLoadSettings({ url: match.path });
-    }
-  }
-
   // returns the JSX that will be rendered for this component
   render() {
     const { settings, onSetPushEnabled } = this.props;
     return (
-      <section className="settings">
-        <ul className="setting-list">
+      <section>
+        <ul className="setting__list">
           {process.env.ALLOW_PUSH_NOTIFICATON && (
-            <li className="item">
+            <li className="setting__list__item">
               <PushNotificationToggle
                 title="Push Notifications"
                 html="Enable push notifications"
@@ -34,13 +27,17 @@ class Settings extends React.PureComponent {
               />
             </li>
           )}
-          <li className="item">
-            <AddToHomeScreen className="title">
+          <li className="setting__list__item">
+            <AddToHomeScreen className="setting__list__item__title">
               Add To Homescreen
             </AddToHomeScreen>
           </li>
-          <li className="item">
-            <a href={process.env.AUTHOR.URL} target="_blank" className="title">
+          <li className="setting__list__item">
+            <a
+              href={process.env.AUTHOR.URL}
+              target="_blank"
+              className="setting__list__item__title"
+            >
               {`About ${process.env.AUTHOR.NAME}`}
             </a>
           </li>
@@ -50,7 +47,7 @@ class Settings extends React.PureComponent {
   }
 
   static fetchData(store, { match }) {
-    store.dispatch(fetchSettings({ url: match.path }));
+    store.dispatch(fetchSettings({ url: match.url }));
   }
 
   static getReducer() {
@@ -61,19 +58,22 @@ class Settings extends React.PureComponent {
 // maps the redux store state to the props related to the data from the store
 const mapStateToProps = state => {
   return {
-    settings: getSettingsState(state).toJS(),
-    app: getAppState(state).toJS()
+    settings: getSettingsState(state).toJS()
   };
 };
 
 // specifies the behaviour, which callback prop dispatches which action
 const mapDispatchToProps = dispatch => {
   return {
-    onLoadSettings: data => dispatch(fetchSettings(data)),
     onSetPushEnabled: data => dispatch(setPushEnabled(data))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  reducerInjector(REDUCER_NAME, settingsReducer)(Settings)
+export default withAuth(
+  withPage(
+    connect(mapStateToProps, mapDispatchToProps)(
+      reducerInjector(REDUCER_NAME, settingsReducer)(Settings)
+    ),
+    getSettings
+  )
 );

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 const TextBox = props => {
   const {
@@ -10,40 +9,55 @@ const TextBox = props => {
     readOnly,
     disabled,
     messages,
-    meta: { touched, error }
+    autoComplete,
+    border,
+    material,
+    align,
+    min,
+    max,
+    step,
+    meta: { touched, error },
+    isAlwaysOpen
   } = props;
   return (
     <div
-      className={`form-field ${className}
-        ${messages && messages.length > 0 ? " invalid" : ""}`}
+      className={`form-field ${className ? `form-field--${className}` : ""}
+        ${messages && messages.length > 0 ? " form-field--invalid" : ""}
+        ${material ? "form-field--material" : ""}`}
     >
       <input
         type={type}
-        className={input.value || input.value === 0 ? "has-value" : ""}
+        className={`form-field__input ${
+          input.value || input.value === 0 ? "form-field__input--has-value" : ""
+        } ${border ? "form-field__input--bordered" : ""} ${
+          align ? `form-field__input--${align}` : ""
+        }`}
         {...input}
         readOnly={readOnly}
         disabled={disabled}
+        autoComplete={autoComplete}
+        min={min}
+        max={max}
+        step={step}
       />
-      <span className="bar" />
-      <label htmlFor={input.name}>
+      <label
+        className={`form-field__label ${
+          isAlwaysOpen ? "form-field__label--always-open" : ""
+        }`}
+        htmlFor={input.name}
+      >
         <span>{label}</span>
       </label>
       {messages &&
         messages.map((n, index) => {
           return (
-            <span key={index} className="error-message">
+            <span key={index} className="form-field__error-message">
               {n.message}
             </span>
           );
         })}
     </div>
   );
-};
-
-TextBox.propTypes = {
-  type: PropTypes.string,
-  label: PropTypes.string.isRequired,
-  className: PropTypes.string
 };
 
 export default TextBox;

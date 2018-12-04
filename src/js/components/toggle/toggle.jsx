@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 const Toggle = ({ id, title, html, onChange, disabled, checked }) => {
   return (
@@ -22,11 +21,6 @@ const Toggle = ({ id, title, html, onChange, disabled, checked }) => {
       </div>
     </label>
   );
-};
-
-Toggle.propTypes = {
-  title: PropTypes.string,
-  html: PropTypes.string
 };
 
 export default Toggle;

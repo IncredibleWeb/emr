@@ -1,0 +1,17 @@
+.radio-group__item {
+  padding: 0.75em 0;
+  cursor: pointer;
+}
+
+.radio-group__item--inline {
+  display: inline-block;
+}
+
+.radio-group__item__input {
+  vertical-align: baseline;
+}
+
+.radio-group__item__label {
+  position: relative;
+  margin-left: 1em;
+}

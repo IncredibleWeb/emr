@@ -1,19 +1,20 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import Overlay from "../nav/overlay";
 
-const Modal = ({ className, children, onClick }) => {
+const Modal = ({ className, modalClassName, children, onClick, wide }) => {
   return (
-    <section className={className ? className : ""}>
+    <section className={className || ""}>
       <Overlay isVisible={true} onClick={onClick} />
-      <div className="modal">{children}</div>
+      <div
+        className={`modal ${modalClassName ? `modal--${modalClassName}` : ""} ${
+          wide ? "modal--wide" : ""
+        }`}
+      >
+        {children}
+      </div>
     </section>
   );
-};
-
-Modal.propTypes = {
-  className: PropTypes.string
 };
 
 export default Modal;

@@ -7,13 +7,15 @@ import {
   SET_META,
   SET_TITLE,
   SET_URL,
-  REDUCER_NAME
+  REDUCER_NAME,
+  SET_BOUNDARY_ERROR
 } from "./constants";
 
 const initialState = fromJS({
   deferredPrompt: null,
   isLoading: true,
   isError: false,
+  isBoundaryError: false,
   meta: {},
   title: "",
   url: ""
@@ -25,6 +27,8 @@ export function appReducer(state = initialState, action) {
       return state.set("isLoading", action.data);
     case APP_ERROR:
       return state.set("isError", true);
+    case SET_BOUNDARY_ERROR:
+      return state.set("isBoundaryError", action.data);
     case SET_DEFERRED_PROMPT:
       return state.set("deferredPrompt", action.data);
     case SET_META:

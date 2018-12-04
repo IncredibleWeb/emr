@@ -1,0 +1,8 @@
+.confirm { }
+
+.confirm__form__field {
+	@include breakpoint {
+		width: 25%;
+		float: right;
+	}
+}

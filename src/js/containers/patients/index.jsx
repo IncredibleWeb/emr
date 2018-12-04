@@ -7,9 +7,9 @@ import TableWrapper from "../../components/table/tableWrapper";
 import PatientsTable from "../../components/patients/patientsTable";
 import reducerInjector from "../../util/reducerInjector";
 import { REDUCER_NAME } from "./constants";
-import { fetchPatients } from "./actions";
-import { fetchPage } from "../page/actions";
-import { getPageState } from "../page/reducer";
+import { fetchPatients, getPatients } from "./actions";
+import withPage from "../page/withPage";
+import withAuth from "../login/withAuth";
 import { patientsReducer, getPatientsState } from "./reducer";
 import {
   SUCCESS_QUERY_STRING_PARAM,
@@ -19,12 +19,9 @@ import {
 
 class Patients extends React.PureComponent {
   componentDidMount() {
-    const { onLoadPatients, patients, page, onLoadPage, match } = this.props;
+    const { onLoadPatients, patients, match } = this.props;
     if (!(patients && patients.length)) {
       onLoadPatients({ url: match.path });
-    }
-    if (page.url != match.url) {
-      onLoadPage({ url: match.url });
     }
   }
 
@@ -52,18 +49,20 @@ class Patients extends React.PureComponent {
 
 // maps the redux patient state to the props related to the data from the patient
 const mapStateToProps = state => ({
-  page: getPageState(state).toJS(),
   ...getPatientsState(state).toJS()
 });
 
 // specifies the behaviour, which callback prop dispatches which action
 const mapDispatchToProps = dispatch => {
   return {
-    onLoadPatients: data => dispatch(fetchPatients(data)),
-    onLoadPage: data => dispatch(fetchPage(data))
+    onLoadPatients: data => dispatch(getPatients(data))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  reducerInjector(REDUCER_NAME, patientsReducer)(Patients)
+export default withAuth(
+  withPage(
+    connect(mapStateToProps, mapDispatchToProps)(
+      reducerInjector(REDUCER_NAME, patientsReducer)(Patients)
+    )
+  )
 );

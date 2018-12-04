@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 const CheckBox = props => {
   const { input, label, readOnly, meta: { touched, error } } = props;
@@ -16,10 +15,6 @@ const CheckBox = props => {
       </div>
     </div>
   );
-};
-
-CheckBox.propTypes = {
-  label: PropTypes.string.isRequired
 };
 
 export default CheckBox;

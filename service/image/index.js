@@ -1,9 +1,9 @@
-import ImageService from "./image.service";
-import { toImage, toImageJson } from "./image.adapter";
+import MockService from "./service.mock";
+import { toImage, toImageJson } from "./adapter";
 
 export default class Image {
-  constructor() {
-    this.service = new ImageService();
+  constructor({ service } = {}) {
+    this.service = service || new MockService();
   }
 
   post(data) {

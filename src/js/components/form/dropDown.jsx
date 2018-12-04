@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 const DropDown = props => {
   const {
@@ -8,26 +7,35 @@ const DropDown = props => {
     className = "",
     disabled,
     children,
-    meta: { touched, error }
+    messages,
+    meta: { touched, error },
+    material
   } = props;
   return (
-    <div className={`form-field material ${className}`}>
-      <select className={className} {...input} disabled={disabled}>
+    <div
+      className={`form-field ${className || ""} ${
+        material ? "form-field--material" : ""
+      }`}
+    >
+      <select className="form-field__input" {...input} disabled={disabled}>
         {children}
       </select>
-      <span className="highlight" />
-      <span className="bar" />
-      {label && (
-        <label htmlFor={input.name}>
-          <span>{label}</span>
-        </label>
-      )}
+      {label &&
+        !material && (
+          <label className="form-field__label" htmlFor={input.name}>
+            <span>{label}</span>
+          </label>
+        )}
+      {messages &&
+        messages.map((n, index) => {
+          return (
+            <span key={index} className="form-field__error-message">
+              {n.message}
+            </span>
+          );
+        })}
     </div>
   );
-};
-
-DropDown.propTypes = {
-  label: PropTypes.string
 };
 
 export default DropDown;

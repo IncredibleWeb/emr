@@ -1,0 +1,90 @@
+.card {
+  position: relative;
+  padding: 1em;
+  margin: 0 auto;
+  background-color: $theme-color-white;
+  box-shadow: $box-shadow;  
+  overflow-y: auto;
+}
+
+.card--wide {
+  max-width: 72em;
+}
+
+.card--right {
+  text-align: right;
+}
+
+.card--two-column {
+  @include container;
+
+  .card--two-column__column {
+    @include span(1 of 2);
+
+    &:nth-child(2n) {
+      @include last;
+    }
+  }
+}
+
+.card__title {
+  font-weight: 400;
+  margin-top: 0;
+}
+
+.card__buttons {
+  text-align: center;
+}
+
+.card__buttons__button {
+  width: 100%;
+
+  @include breakpoint {
+    max-width: 24em;
+  }
+}
+
+.card-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 3.5em;
+  height: 3.5em;
+}
+
+.card-close__button {
+  display: inline-block;
+  color: $font-color;
+
+  &:active, &:hover, &:visited {
+    color: $font-color;
+  }
+
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin: auto;
+    content: '\00D7';
+    font-size: 2em;
+    text-align: center;
+  }
+}
+
+.card__content--wide {
+  @include container(72em);
+}
+
+.card__content__ctas {
+  margin-bottom: 1em;
+  text-align: right;
+}
+
+.card__content__ctas__button {
+  font-size: 0.8em;
+}
